@@ -17,6 +17,7 @@ public class CakeController implements android.view.View.OnClickListener, androi
         }
         myCakeModel.baloonX=event.getX();
         myCakeModel.baloonY=event.getY();
+        myCakeModel.touchLoc = "x:"+myCakeModel.baloonX+" y:"+myCakeModel.baloonY;
         myCakeView.invalidate();
         return true;
     }

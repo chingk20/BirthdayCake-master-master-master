@@ -9,7 +9,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
 
-public class CakeView extends SurfaceView implements View.OnTouchListener {
+public class CakeView extends SurfaceView  {
 
     /* These are the paints we'll use to draw the birthday cake below */
     Paint cakePaint = new Paint();
@@ -74,7 +74,6 @@ public class CakeView extends SurfaceView implements View.OnTouchListener {
         balloonPaint.setStyle(Paint.Style.FILL);
 
         setBackgroundColor(Color.WHITE);  //better than black default
-        setOnTouchListener(this);
 
     }
 
@@ -167,14 +166,7 @@ public class CakeView extends SurfaceView implements View.OnTouchListener {
 
     }//onDraw
 
-    public boolean onTouch(View v, MotionEvent event){
-        int xPos = (int) event.getX();
-        int yPos = (int) event.getY();
 
-        myCakeModel.touchLoc = "x:"+xPos+" y:"+yPos;
-        invalidate();
-        return true;
-    }
 
     //public void drawText(String text, float x, float y, Paint paint){
 
