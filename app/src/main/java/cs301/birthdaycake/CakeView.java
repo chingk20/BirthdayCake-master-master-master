@@ -39,7 +39,6 @@ public class CakeView extends SurfaceView implements View.OnTouchListener {
 
     private CakeModel myCakeModel = new CakeModel();
     private CakeView koriCake;
-    private String touchLoc= "";
 
     public CakeModel getCakeModel()
     {
@@ -151,7 +150,7 @@ public class CakeView extends SurfaceView implements View.OnTouchListener {
 
         textPaint.setTextSize(50);
         textPaint.setColor(Color.RED);
-        canvas.drawText(touchLoc, cakeLeft, cakeTop+(5*frostHeight) , textPaint);
+        canvas.drawText(myCakeModel.touchLoc, cakeLeft, cakeTop+(5*frostHeight) , textPaint);
 
 
 
@@ -161,7 +160,7 @@ public class CakeView extends SurfaceView implements View.OnTouchListener {
         int xPos = (int) event.getX();
         int yPos = (int) event.getY();
 
-        touchLoc = "x:"+xPos+" y:"+yPos;
+        myCakeModel.touchLoc = "x:"+xPos+" y:"+yPos;
         invalidate();
         return true;
     }
