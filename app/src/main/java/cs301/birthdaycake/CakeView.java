@@ -5,12 +5,15 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.SurfaceView;
+import android.view.View;
 
-public class CakeView extends SurfaceView {
+public class CakeView extends SurfaceView implements View.OnTouchListener {
 
     /* These are the paints we'll use to draw the birthday cake below */
     Paint cakePaint = new Paint();
+    Paint textPaint = new Paint();
     Paint frostingPaint = new Paint();
     Paint candlePaint = new Paint();
     Paint outerFlamePaint = new Paint();
@@ -35,6 +38,8 @@ public class CakeView extends SurfaceView {
     public static final float innerFlameRadius = 15.0f;
 
     private CakeModel myCakeModel = new CakeModel();
+    private CakeView koriCake;
+    private String touchLoc= "";
 
     public CakeModel getCakeModel()
     {
@@ -66,6 +71,7 @@ public class CakeView extends SurfaceView {
         wickPaint.setStyle(Paint.Style.FILL);
 
         setBackgroundColor(Color.WHITE);  //better than black default
+        setOnTouchListener(this);
 
     }
 
@@ -143,7 +149,27 @@ public class CakeView extends SurfaceView {
         }
 
 
+        textPaint.setTextSize(50);
+        textPaint.setColor(Color.RED);
+        canvas.drawText(touchLoc, cakeLeft, cakeTop+(5*frostHeight) , textPaint);
+
+
+
     }//onDraw
+
+    public boolean onTouch(View v, MotionEvent event){
+        int xPos = (int) event.getX();
+        int yPos = (int) event.getY();
+
+        touchLoc = "x:"+xPos+" y:"+yPos;
+        invalidate();
+        return true;
+    }
+
+    //public void drawText(String text, float x, float y, Paint paint){
+
+    //}
+
 
 }//class CakeView
 
