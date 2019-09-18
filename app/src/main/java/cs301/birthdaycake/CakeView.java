@@ -38,9 +38,6 @@ public class CakeView extends SurfaceView implements View.OnTouchListener {
     public static final float outerFlameRadius = 30.0f;
     public static final float innerFlameRadius = 15.0f;
 
-    public float baloonX=-1.0f;
-    public float baloonY=-1.0f;
-
     private CakeModel myCakeModel = new CakeModel();
     private CakeView koriCake;
     private String touchLoc= "";
@@ -108,8 +105,8 @@ public class CakeView extends SurfaceView implements View.OnTouchListener {
             canvas.drawRect(wickLeft, wickTop, wickLeft + wickWidth, wickTop + wickHeight, wickPaint);
         }
             if(myCakeModel.hasBaloon == true) {
-                canvas.drawLine(baloonX, baloonY, baloonX, baloonY + 300, wickPaint);
-                canvas.drawOval(baloonX-75, baloonY-100, baloonX + 75, baloonY +100, balloonPaint);
+                canvas.drawLine(myCakeModel.baloonX, myCakeModel.baloonY, myCakeModel.baloonX, myCakeModel.baloonY + 300, wickPaint);
+                canvas.drawOval(myCakeModel.baloonX-75, myCakeModel.baloonY-100, myCakeModel.baloonX + 75, myCakeModel.baloonY +100, balloonPaint);
 
             }
 

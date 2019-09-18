@@ -15,8 +15,8 @@ public class CakeController implements android.view.View.OnClickListener, androi
         if(myCakeModel.hasBaloon == false) {
             myCakeModel.hasBaloon = true;
         }
-        myCakeView.baloonX=event.getX();
-        myCakeView.baloonY=event.getY();
+        myCakeModel.baloonX=event.getX();
+        myCakeModel.baloonY=event.getY();
         myCakeView.invalidate();
         return true;
     }
