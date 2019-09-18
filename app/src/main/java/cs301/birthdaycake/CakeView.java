@@ -19,6 +19,7 @@ public class CakeView extends SurfaceView implements View.OnTouchListener {
     Paint outerFlamePaint = new Paint();
     Paint innerFlamePaint = new Paint();
     Paint wickPaint = new Paint();
+    Paint balloonPaint=new Paint();
 
     /* These constants define the dimensions of the cake.  While defining constants for things
         like this is good practice, we could be calculating these better by detecting
@@ -36,6 +37,9 @@ public class CakeView extends SurfaceView implements View.OnTouchListener {
     public static final float wickWidth = 6.0f;
     public static final float outerFlameRadius = 30.0f;
     public static final float innerFlameRadius = 15.0f;
+
+    public float baloonX=-1.0f;
+    public float baloonY=-1.0f;
 
     private CakeModel myCakeModel = new CakeModel();
     private CakeView koriCake;
@@ -69,6 +73,9 @@ public class CakeView extends SurfaceView implements View.OnTouchListener {
         wickPaint.setColor(Color.BLACK);
         wickPaint.setStyle(Paint.Style.FILL);
 
+        balloonPaint.setColor(Color.BLUE);
+        balloonPaint.setStyle(Paint.Style.FILL);
+
         setBackgroundColor(Color.WHITE);  //better than black default
         setOnTouchListener(this);
 
@@ -81,12 +88,12 @@ public class CakeView extends SurfaceView implements View.OnTouchListener {
     public void drawCandle(Canvas canvas, float left, float bottom) {
 
         if(myCakeModel.hasCandle == true) {
-            canvas.drawRect(left, bottom - candleHeight/2, left + candleWidth, bottom, candlePaint);
+            canvas.drawRect(left, bottom - candleHeight / 2, left + candleWidth, bottom, candlePaint);
 
             if (myCakeModel.litCandle == true) {
                 //draw the outer flame
                 float flameCenterX = left + candleWidth / 2;
-                float flameCenterY = bottom - wickHeight - candleHeight/2 - outerFlameRadius / 3;
+                float flameCenterY = bottom - wickHeight - candleHeight / 2 - outerFlameRadius / 3;
                 canvas.drawCircle(flameCenterX, flameCenterY, outerFlameRadius, outerFlamePaint);
 
                 //draw the inner flame
@@ -96,10 +103,17 @@ public class CakeView extends SurfaceView implements View.OnTouchListener {
 
             //draw the wick
             float wickLeft = left + candleWidth / 2 - wickWidth / 2;
-            float wickTop = bottom - wickHeight - candleHeight/2;
+            float wickTop = bottom - wickHeight - candleHeight / 2;
             canvas.drawRect(wickLeft, wickTop, wickLeft + wickWidth, wickTop + wickHeight, wickPaint);
         }
+            if(myCakeModel.hasBaloon == true) {
+                canvas.drawLine(baloonX, baloonY, baloonX, baloonY + 300, wickPaint);
+                canvas.drawOval(baloonX-75, baloonY-100, baloonX + 75, baloonY +100, balloonPaint);
+
+            }
+
     }
+
 
     /**
      * onDraw is like "paint" in a regular Java program.  While a Canvas is

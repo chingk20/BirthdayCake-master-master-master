@@ -5,5 +5,4 @@ public class CakeModel {
     public int numCandles = 2;
     public boolean frosting = true;
     public boolean hasCandle = true;
-    public String touchLoc = "";
 }
